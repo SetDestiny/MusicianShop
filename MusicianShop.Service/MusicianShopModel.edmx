@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="MusicianShopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="MusicianShopModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MusicianShopModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MusicianShopModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Manufacturers1" EntityType="MusicianShopModel.Manufacturers" />
+          <EntitySet Name="Subcategories" EntityType="MusicianShopModel.Subcategories" />
+          <EntitySet Name="Categories" EntityType="MusicianShopModel.Categories" />
+          <EntitySet Name="Products" EntityType="MusicianShopModel.Products" />
+          <EntitySet Name="Orders" EntityType="MusicianShopModel.Orders" />
+          <EntitySet Name="Customers" EntityType="MusicianShopModel.Customers" />
+          <AssociationSet Name="OrdersCustomers" Association="MusicianShopModel.OrdersCustomers">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="ProductsManufacturers" Association="MusicianShopModel.ProductsManufacturers">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Manufacturers" EntitySet="Manufacturers1" />
+          </AssociationSet>
+          <AssociationSet Name="ProductsCategories" Association="MusicianShopModel.ProductsCategories">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="ProductsSubcategories" Association="MusicianShopModel.ProductsSubcategories">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Subcategories" EntitySet="Subcategories" />
+          </AssociationSet>
+          <EntitySet Name="OrdersDetails" EntityType="MusicianShopModel.OrdersDetail" />
+          <AssociationSet Name="OrdersDetailProducts" Association="MusicianShopModel.OrdersDetailProducts">
+            <End Role="OrdersDetail" EntitySet="OrdersDetails" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="OrdersDetailOrders" Association="MusicianShopModel.OrdersDetailOrders">
+            <End Role="OrdersDetail" EntitySet="OrdersDetails" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Manufacturers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="MusicianShopModel.ProductsManufacturers" FromRole="Manufacturers" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Subcategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Image" Type="Binary" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="MusicianShopModel.ProductsSubcategories" FromRole="Subcategories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Image" Type="Binary" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="MusicianShopModel.ProductsCategories" FromRole="Categories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="SubcategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="Binary" Nullable="false" />
+          <NavigationProperty Name="Manufacturer" Relationship="MusicianShopModel.ProductsManufacturers" FromRole="Products" ToRole="Manufacturers" />
+          <NavigationProperty Name="Category" Relationship="MusicianShopModel.ProductsCategories" FromRole="Products" ToRole="Categories" />
+          <NavigationProperty Name="Subcategory" Relationship="MusicianShopModel.ProductsSubcategories" FromRole="Products" ToRole="Subcategories" />
+          <NavigationProperty Name="OrdersDetails" Relationship="MusicianShopModel.OrdersDetailProducts" FromRole="Products" ToRole="OrdersDetail" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="MusicianShopModel.OrdersCustomers" FromRole="Orders" ToRole="Customers" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" />
+          <Property Name="SoldDate" Type="DateTime" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <Property Name="DeliveryMethod" Type="String" Nullable="false" />
+          <NavigationProperty Name="OrdersDetails" Relationship="MusicianShopModel.OrdersDetailOrders" FromRole="Orders" ToRole="OrdersDetail" />
+          <Property Name="PaymentStatus" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="MusicianShopModel.OrdersCustomers" FromRole="Customers" ToRole="Orders" />
+        </EntityType>
+        <Association Name="OrdersCustomers">
+          <End Type="MusicianShopModel.Orders" Role="Orders" Multiplicity="*" />
+          <End Type="MusicianShopModel.Customers" Role="Customers" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductsManufacturers">
+          <End Type="MusicianShopModel.Products" Role="Products" Multiplicity="*" />
+          <End Type="MusicianShopModel.Manufacturers" Role="Manufacturers" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ManufacturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductsCategories">
+          <End Type="MusicianShopModel.Products" Role="Products" Multiplicity="*" />
+          <End Type="MusicianShopModel.Categories" Role="Categories" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductsSubcategories">
+          <End Type="MusicianShopModel.Products" Role="Products" Multiplicity="*" />
+          <End Type="MusicianShopModel.Subcategories" Role="Subcategories" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SubcategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OrdersDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Product" Relationship="MusicianShopModel.OrdersDetailProducts" FromRole="OrdersDetail" ToRole="Products" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="MusicianShopModel.OrdersDetailOrders" FromRole="OrdersDetail" ToRole="Orders" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="OrdersDetailProducts">
+          <End Type="MusicianShopModel.OrdersDetail" Role="OrdersDetail" Multiplicity="*" />
+          <End Type="MusicianShopModel.Products" Role="Products" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdersDetailOrders">
+          <End Type="MusicianShopModel.OrdersDetail" Role="OrdersDetail" Multiplicity="*" />
+          <End Type="MusicianShopModel.Orders" Role="Orders" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="MusicianShopModel" />
+        <Alias Key="Target" Value="MusicianShopModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="MusicianShopModelContainer" StorageEntityContainer="MusicianShopModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

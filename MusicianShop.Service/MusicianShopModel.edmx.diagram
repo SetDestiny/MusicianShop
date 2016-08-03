@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e33fe05dc1c74c798c3aff9d7aca7c4c" Name="MusicianShopDiagram" >
+        <EntityTypeShape EntityType="MusicianShopModel.Manufacturers" Width="1.5" PointX="12" PointY="0.875" />
+        <EntityTypeShape EntityType="MusicianShopModel.Subcategories" Width="1.5" PointX="12" PointY="2.625" />
+        <EntityTypeShape EntityType="MusicianShopModel.Categories" Width="1.5" PointX="9.75" PointY="4.625" />
+        <EntityTypeShape EntityType="MusicianShopModel.Products" Width="1.5" PointX="9.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MusicianShopModel.Orders" Width="1.5" PointX="4.75" PointY="1.375" />
+        <EntityTypeShape EntityType="MusicianShopModel.Customers" Width="1.5" PointX="2.25" PointY="1.375" />
+        <AssociationConnector Association="MusicianShopModel.OrdersCustomers" />
+        <AssociationConnector Association="MusicianShopModel.ProductsManufacturers" />
+        <AssociationConnector Association="MusicianShopModel.ProductsCategories" />
+        <AssociationConnector Association="MusicianShopModel.ProductsSubcategories" />
+        <EntityTypeShape EntityType="MusicianShopModel.OrdersDetail" Width="1.5" PointX="7.125" PointY="1.5" />
+        <AssociationConnector Association="MusicianShopModel.OrdersDetailProducts" />
+        <AssociationConnector Association="MusicianShopModel.OrdersDetailOrders" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
