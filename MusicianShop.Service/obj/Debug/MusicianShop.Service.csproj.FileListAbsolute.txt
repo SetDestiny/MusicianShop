@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\bin\MusicianShop.Service.dll.config
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\bin\MusicianShop.Service.dll
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\bin\MusicianShop.Service.pdb
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\bin\EntityFramework.dll
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\bin\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\bin\EntityFramework.xml
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\bin\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\obj\Debug\MusicianShop.Service.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\obj\Debug\MusicianShop.Service.dll
+C:\Users\Administrator\Desktop\Projects\MusicianShop\MusicianShop.Service\obj\Debug\MusicianShop.Service.pdb
